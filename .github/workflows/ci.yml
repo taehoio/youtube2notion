@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 5
 
-      - name: Cache pip
+      - name: Cache dependencies
         uses: actions/cache@v2
         with:
           path: ~/.cache/pip
@@ -49,7 +49,7 @@ jobs:
         with:
           fetch-depth: 5
 
-      - name: Cache pip
+      - name: Cache dependencies
         uses: actions/cache@v2
         with:
           path: ~/.cache/pip
