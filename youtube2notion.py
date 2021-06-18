@@ -24,7 +24,10 @@ def youtube2notion(video_id: str, output_dir, notion_token_v2, notion_page_url):
         notion_token_v2=notion_token_v2,
         notion_page_url=notion_page_url)
 
-    y2n.execute()
+    try:
+        y2n.execute()
+    except Exception as e:
+        print(e)
 
 
 if __name__ == '__main__':
