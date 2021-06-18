@@ -7,10 +7,10 @@ class Ffmpeg:
     def take_screenshots(cls, input_filename: str, output_dir: str = ''):
         cmd_args = [
             'ffmpeg',
-        #'-hide_banner',
-        #'-v',
-        #'quiet',
-        #'-stats'
+            '-hide_banner',
+            '-v',
+            'quiet',
+            '-stats'
             '-i',
             input_filename,
             '-vf',
