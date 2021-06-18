@@ -17,3 +17,11 @@ lint: venv
 .PHONY: format
 format: venv
 	$(VENV)/yapf --in-place --recursive --verify youtube2notion tests
+
+.PHONY: start-server-dev
+start-server-dev: venv
+	$(VENV)/python app.py
+
+.PHONY: start-server-wsgi
+start-server-wsgi: venv
+	$(VENV)/uwsgi uwsgi.ini
