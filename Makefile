@@ -21,7 +21,3 @@ format: venv
 .PHONY: start-server-dev
 start-server-dev: venv
 	$(VENV)/python app.py
-
-.PHONY: start-server-wsgi
-start-server-wsgi: venv
-	$(VENV)/uwsgi uwsgi.ini
