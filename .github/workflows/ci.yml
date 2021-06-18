@@ -33,6 +33,9 @@ jobs:
           python-version: '3.x'
           architecture: 'x64'
 
+      - name: Set up ffmpeg
+        uses: FedericoCarboni/setup-ffmpeg@v1
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
