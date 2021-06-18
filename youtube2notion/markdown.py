@@ -18,4 +18,6 @@ class Markdown:
             md += element.text + '\n'
             md += '\n'
 
+        md = md[:-2]
+
         return md

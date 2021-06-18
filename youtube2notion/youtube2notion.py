@@ -12,10 +12,11 @@ class Youtube2notion:
 
     def __init__(self,
                  video_id: str,
+                 output_dir: str = '',
                  notion_token_v2: str = '',
                  notion_page_url: str = ''):
         self.video_id = video_id
-        self.output_dir = './tmp/%(video_id)s/' % {'video_id': self.video_id}
+        self.output_dir = output_dir
         self.images_output_dir = self.output_dir + 'images/'
 
         self.notion_token_v2 = notion_token_v2
@@ -46,6 +47,9 @@ class Youtube2notion:
         f.write(md)
         f.close()
 
+    def _should_upload_to_notion(self) -> bool:
+        return self.notion_token_v2 and self.notion_page_url
+
     def _upload_to_notion(self, md_file: str, notion_token_v2: str,
                           notion_page_url: str):
         client = NotionClient(token_v2=notion_token_v2)
@@ -69,7 +73,7 @@ class Youtube2notion:
         md_filename = self.output_dir + self.video_id + '.md'
         self._write_markdown_file(md, md_filename)
 
-        if self.notion_token_v2 and self.notion_page_url:
+        if self._should_upload_to_notion():
             self._upload_to_notion(
                 md_filename,
                 notion_token_v2=self.notion_token_v2,

@@ -12,7 +12,7 @@ class TestYoutubeSubtitle(unittest.TestCase):
             category=ResourceWarning,
             message="unclosed.*<ssl.SSLSocket.*>")
 
-        self.video_id = 'MB5IX-np5fE'
+        self.video_id = 'Kc_cvAXCs4Y'
 
     def test_get_subtitle_elements(self):
         self.assertIsNotNone(

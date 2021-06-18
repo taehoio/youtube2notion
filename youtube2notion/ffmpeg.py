@@ -10,7 +10,6 @@ class Ffmpeg:
             '-hide_banner',
             '-v',
             'quiet',
-            '-stats'
             '-i',
             input_filename,
             '-vf',
