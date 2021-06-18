@@ -1,6 +1,4 @@
 import youtube_dl
-from youtube_dl.utils import DownloadError
-from youtube_transcript_api import YouTubeTranscriptApi
 
 
 class YoutubeVideo:
@@ -20,7 +18,7 @@ class YoutubeVideo:
             video_id, output_dir, '.mp4')
 
         ydl_opts = {
-        #'quiet': True,
+            'quiet': True,
             'format': cls.FORMAT_CODE,
             'writethumbnail': True,
             'writeinfojson': True,
