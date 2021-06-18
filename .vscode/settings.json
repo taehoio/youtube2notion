@@ -1,0 +1,4 @@
+{
+    "python.formatting.provider": "yapf",
+    "python.pythonPath": "/Users/xissysnd/dev/taehoio/youtube2notion/.venv/bin/python",
+}
