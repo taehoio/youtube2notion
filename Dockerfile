@@ -1,14 +1,14 @@
-FROM python:3.9 AS builder
+FROM python:3.9.5-alpine3.13 AS builder
+
+RUN apk add --no-cache libc6-compat build-base
 
 COPY requirements.txt .
 RUN pip install --user -r requirements.txt
 
 
-FROM python:3.9-slim AS runner
+FROM python:3.9.5-alpine3.13 AS runner
 
-RUN apt-get update && \
-    apt-get install -y ffmpeg && \
-    rm -rf /var/lib/apt/lists/* /var/tmp/*
+RUN apk add --no-cache ffmpeg
 
 COPY --from=builder /root/.local /root/.local
 ENV PATH=/root/.local:$PATH
