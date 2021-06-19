@@ -20,7 +20,7 @@ RUN adduser -S youtube2notion
 USER youtube2notion
 
 COPY --from=builder /home/youtube2notion/.local /home/youtube2notion/.local
-ENV PATH=/home/youtube2notion/.local:$PATH
+ENV PATH=/home/youtube2notion/.local/bin:$PATH
 
 COPY . .
 
