@@ -1,14 +1,19 @@
-FROM linuxserver/ffmpeg:4.3-cli-ls22
+FROM python:3.9 AS builder
+
+COPY requirements.txt .
+RUN pip install --user -r requirements.txt
+
+
+FROM python:3.9-slim AS runner
 
 RUN apt-get update && \
-    apt install -y software-properties-common && \
-    add-apt-repository -y ppa:deadsnakes/ppa && \
-    apt-get install -y python3.9 python3.9-venv make && \
+    apt-get install -y ffmpeg && \
     rm -rf /var/lib/apt/lists/* /var/tmp/*
+
+COPY --from=builder /root/.local /root/.local
+ENV PATH=/root/.local:$PATH
 
 WORKDIR /youtube2notion
 COPY . .
-
-RUN make venv
 
 ENTRYPOINT [ "./entrypoint.sh" ]
