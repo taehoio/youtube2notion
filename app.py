@@ -1,5 +1,6 @@
 from youtube2notion.youtube2notion import Youtube2notion
 from flask import Flask, request
+from os.path import exists
 from shutil import rmtree
 
 app = Flask(__name__)
@@ -33,7 +34,8 @@ def upload():
     except Exception as e:
         return {'msg': type(e).__name__ + str(e)}, 400
     finally:
-        rmtree(output_dir)
+        if exists(output_dir):
+            rmtree(output_dir)
 
     return {}
 
