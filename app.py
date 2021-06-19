@@ -1,5 +1,6 @@
 from youtube2notion.youtube2notion import Youtube2notion
 from flask import Flask, request
+from os import rmdir
 
 app = Flask(__name__)
 
@@ -31,7 +32,10 @@ def upload():
         y2n.execute()
     except Exception as e:
         return {'msg': type(e).__name__ + str(e)}, 400
-    return req
+    finally:
+        rmdir(output_dir)
+
+    return {}
 
 
 if __name__ == "__main__":
