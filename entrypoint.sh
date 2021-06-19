@@ -1,5 +1,5 @@
-#! /bin/bash
+#! /bin/sh
 
 FULL_ARGS=$@
 
-./.venv/bin/python ${FULL_ARGS}
+python3.9 ${FULL_ARGS}

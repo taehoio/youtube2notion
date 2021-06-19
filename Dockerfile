@@ -1,14 +1,27 @@
-FROM linuxserver/ffmpeg:4.3-cli-ls22
+FROM python:3.9.5-alpine3.13 AS builder
 
-RUN apt-get update && \
-    apt install -y software-properties-common && \
-    add-apt-repository -y ppa:deadsnakes/ppa && \
-    apt-get install -y python3.9 python3.9-venv make && \
-    rm -rf /var/lib/apt/lists/* /var/tmp/*
+RUN apk add --no-cache libc6-compat build-base
 
-WORKDIR /youtube2notion
+# Google CloudRun changes HOME to /home for CMD where RUN uses /root
+# https://stackoverflow.com/questions/62276734/google-cloud-run-changes-home-to-home-for-cmd-where-run-uses-root
+# So add a new user and copy /home directory explictly to be compatible with Google CloudRun.
+RUN adduser -S youtube2notion
+USER youtube2notion
+
+COPY requirements.txt .
+RUN pip install --user -r requirements.txt
+
+
+FROM python:3.9.5-alpine3.13 AS runner
+
+RUN apk add --no-cache ffmpeg
+
+RUN adduser -S youtube2notion
+USER youtube2notion
+
+COPY --from=builder /home/youtube2notion/.local /home/youtube2notion/.local
+ENV PATH=/home/youtube2notion/.local/bin:$PATH
+
 COPY . .
-
-RUN make venv
 
 ENTRYPOINT [ "./entrypoint.sh" ]

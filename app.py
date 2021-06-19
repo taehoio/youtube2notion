@@ -2,6 +2,8 @@ from youtube2notion.youtube2notion import Youtube2notion
 from flask import Flask, request
 from os.path import exists
 from shutil import rmtree
+from os import environ
+import googlecloudprofiler
 
 app = Flask(__name__)
 
@@ -40,5 +42,22 @@ def upload():
     return {}
 
 
-if __name__ == "__main__":
+def shouldProfile() -> bool:
+    return environ.get('SHOULD_PROFILE') == 'true'
+
+
+def setUpProfiler(serviceName: str):
+    googlecloudprofiler.start(service=serviceName)
+
+
+def main():
+    serviceName: str = 'youtube2notion'
+
+    if shouldProfile():
+        setUpProfiler(serviceName)
+
     app.run(host='0.0.0.0', port='5000', debug=True)
+
+
+if __name__ == "__main__":
+    main()
