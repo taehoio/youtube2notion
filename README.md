@@ -1,3 +1,3 @@
 # youtube2notion
 
-> For whom prefers reading rather than watching
+> For whom prefers reading than watching
