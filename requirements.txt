@@ -27,7 +27,7 @@ mccabe==0.6.1
 md2notion==2.4.1
 mistletoe==0.7.2
 mypy-extensions==0.4.3
-notion==0.0.28
+git+https://github.com/gnokoheat/notion-py
 packaging==20.9
 pathspec==0.8.1
 protobuf==3.17.3
