@@ -11,7 +11,8 @@ import click
     '--notion-page-url', '-p', 'notion_page_url', required=False, type=str)
 @click.option(
     '--subtitle_language', '-l', 'subtitle_language', required=False, type=str)
-def youtube2notion(video_id: str, output_dir, notion_token_v2, notion_page_url, subtitle_language):
+def youtube2notion(video_id: str, output_dir, notion_token_v2, notion_page_url,
+                   subtitle_language):
     if not output_dir:
         output_dir = './tmp/%s/' % video_id
 
