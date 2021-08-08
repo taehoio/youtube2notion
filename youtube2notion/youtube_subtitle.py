@@ -37,9 +37,9 @@ class YoutubeSubtitle:
                 is_finded['second'] = True
 
         transcript_result: list[SubtitleElement] = []
-        if is_finded['first'] == True:
+        if is_finded['first']:
             transcript_result = transcript.fetch()
-        elif is_finded['second'] == True:
+        elif is_finded['second']:
             transcript = transcript_list.find_transcript([languages[1]])
             transcript_result = transcript.translate(languages[0]).fetch()
         else:
