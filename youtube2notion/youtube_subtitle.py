@@ -27,10 +27,26 @@ class YoutubeSubtitle:
     def get_subtitle_elements(cls,
                               video_id: str,
                               languages=['ko', 'en']) -> list[SubtitleElement]:
-        transcript = YouTubeTranscriptApi().get_transcript(video_id, languages)
+        transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
+        is_finded = {'first': False, 'second': False}
+        for transcript in transcript_list:
+            if transcript.language_code == languages[0]:
+                is_finded['first'] = True
+                break
+            if transcript.language_code == languages[1]:
+                is_finded['second'] = True
+
+        transcript_result: list[SubtitleElement] = []
+        if is_finded['first'] == True:
+            transcript_result = transcript.fetch()
+        elif is_finded['second'] == True:
+            transcript = transcript_list.find_transcript([languages[1]])
+            transcript_result = transcript.translate(languages[0]).fetch()
+        else:
+            transcript_result = transcript.translate(languages[0]).fetch()
 
         subtitle_elements: list[SubtitleElement] = []
-        for sentence in transcript:
+        for sentence in transcript_result:
             subtitle_elements.append(
                 SubtitleElement(
                     text=sentence.get('text'),

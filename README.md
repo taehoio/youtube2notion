@@ -45,7 +45,7 @@ docker run --rm -it taehoio/youtube2notion youtube2notion.py
 #### Run CLI with arguments
 
 ```sh
-docker run --rm -it taehoio/youtube2notion youtube2notion.py YOUTUBE_VIDEO_ID -t NOTION_TOKEN_V2 -p NOTION_PAGE_ID
+docker run --rm -it taehoio/youtube2notion youtube2notion.py YOUTUBE_VIDEO_ID -t NOTION_TOKEN_V2 -p NOTION_PAGE_ID -l TEXT_LANGUAGE
 ```
 
 ### API server
@@ -64,6 +64,7 @@ curl --location --request POST 'http://localhost:5000/upload' \
 --data-raw '{
     "video_id": "YOUTUBE_VIDEO_ID",
     "notion_token_v2": "NOTION_TOKEN_V2",
-    "notion_page_url": "NOTION_PAGE_ID"
+    "notion_page_url": "NOTION_PAGE_ID",
+    "text_language": "TEXT_LANGUAGE"
 }'
 ```
