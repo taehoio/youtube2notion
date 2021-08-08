@@ -15,7 +15,7 @@ class Youtube2notion:
                  output_dir: str = '',
                  notion_token_v2: str = '',
                  notion_page_url: str = '',
-                 text_language: str = 'ko'):
+                 subtitle_language: str = 'ko'):
         self.video_id = video_id
         self.output_dir = output_dir
         self.images_output_dir = self.output_dir + 'images/'
@@ -23,13 +23,13 @@ class Youtube2notion:
         self.notion_token_v2 = notion_token_v2
         self.notion_page_url = notion_page_url
 
-        self.text_language = text_language
+        self.subtitle_language = subtitle_language
 
     def _download_video(self) -> str:
         return YoutubeVideo.download(self.video_id, self.output_dir)
 
     def _get_subtitle_elements(self) -> list[SubtitleElement]:
-        return YoutubeSubtitle.get_subtitle_elements(self.video_id, [self.text_language, 'en'])
+        return YoutubeSubtitle.get_subtitle_elements(self.video_id, [self.subtitle_language, 'en'])
 
     def _take_screenshots(self, input_filename: str):
         Path(self.images_output_dir).mkdir(parents=True, exist_ok=True)
@@ -59,7 +59,7 @@ class Youtube2notion:
         page = client.get_block(notion_page_url)
 
         with open(md_file, 'r', encoding='utf-8') as f:
-            new_page = page.children.add_new(PageBlock, title=self.video_id + '(' + self.text_language + ')')
+            new_page = page.children.add_new(PageBlock, title=self.video_id + '(' + self.subtitle_language + ')')
             upload(f, new_page)
 
     def execute(self):
@@ -69,7 +69,7 @@ class Youtube2notion:
         self._take_screenshots(downloaded_video_filename)
 
         md = self._generage_markdown(
-            title=self.video_id + '(' + self.text_language + ')',
+            title=self.video_id + '(' + self.subtitle_language + ')',
             subtitle_elements=subtitle_elements,
             images_dir='./images/')
 

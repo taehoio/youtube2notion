@@ -19,7 +19,7 @@ def upload():
     video_id = req.get('video_id')
     notion_token_v2 = req.get('notion_token_v2')
     notion_page_url = req.get('notion_page_url')
-    text_language = req.get('text_language')
+    subtitle_language = req.get('subtitle_language')
 
     if not video_id:
         return {'msg': 'invalid video_id'}, 400
