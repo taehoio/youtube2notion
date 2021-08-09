@@ -31,7 +31,7 @@ def upload():
         output_dir=output_dir,
         notion_token_v2=notion_token_v2,
         notion_page_url=notion_page_url,
-        text_language=text_language)
+        subtitle_language=subtitle_language)
 
     try:
         y2n.execute()

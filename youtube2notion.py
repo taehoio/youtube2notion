@@ -20,14 +20,14 @@ def youtube2notion(video_id: str, output_dir, notion_token_v2, notion_page_url,
     click.echo('output_dir: %s' % output_dir)
     click.echo('notion_token_v2: %s' % notion_token_v2)
     click.echo('notion_page_url: %s' % notion_page_url)
-    click.echo('text_language: %s' % text_language)
+    click.echo('subtitle_language: %s' % subtitle_language)
 
     y2n = Youtube2notion(
         video_id=video_id,
         output_dir=output_dir,
         notion_token_v2=notion_token_v2,
         notion_page_url=notion_page_url,
-        text_language=text_language)
+        subtitle_language=subtitle_language)
 
     try:
         y2n.execute()
