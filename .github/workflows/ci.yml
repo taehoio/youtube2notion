@@ -45,7 +45,7 @@ jobs:
           push: true
           tags: |
             asia-northeast1-docker.pkg.dev/taehoio-global/docker-registry/youtube2notion:${{ github.sha }}
-            taehoio/protobuf:${{ github.sha }}
+            taehoio/youtube2notion:${{ github.sha }}
 
   lint:
     name: Lint
