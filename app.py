@@ -19,6 +19,7 @@ def upload():
     video_id = req.get('video_id')
     notion_token_v2 = req.get('notion_token_v2')
     notion_page_url = req.get('notion_page_url')
+    subtitle_language = req.get('subtitle_language')
 
     if not video_id:
         return {'msg': 'invalid video_id'}, 400
@@ -29,7 +30,8 @@ def upload():
         video_id=video_id,
         output_dir=output_dir,
         notion_token_v2=notion_token_v2,
-        notion_page_url=notion_page_url)
+        notion_page_url=notion_page_url,
+        subtitle_language=subtitle_language)
 
     try:
         y2n.execute()
