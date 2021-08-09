@@ -25,21 +25,21 @@ class SubtitleElement:
 class YoutubeSubtitle:
 
     @classmethod
-    def __fetch_transcript(cls, video_id: str,
-                           language_code_candidates: list) -> list:
+    def __fetch_transcript(cls, video_id: str, language_codes: list) -> list:
         """
-        Returns a fetched transcript from YouTube. It makes the best effort to get a proper transcript following below priorities:
-        1. a manually created transcript prior to a automatically generated one.
-        2. language codes in language_code_candidates param will be traversed in order.
+        Returns a fetched transcript from YouTube. It makes the best effort to
+        get a proper transcript following below priorities:
+        1. a manually created transcript prior to a auto-generated one.
+        2. language codes in language_codes param will be traversed in order.
         """
         transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
 
         try:
             return transcript_list.find_manually_created_transcript(
-                language_code_candidates).fetch()
+                language_codes).fetch()
         except NoTranscriptFound:
             return transcript_list.find_generated_transcript(
-                language_code_candidates).fetch()
+                language_codes).fetch()
 
     @classmethod
     def get_subtitle_elements(

@@ -21,12 +21,10 @@ class TestYoutubeSubtitle(unittest.TestCase):
     def test_get_subtitle_with_specific_language(self):
         self.assertIsNotNone(
             YoutubeSubtitle.get_subtitle_elements(self.video_id, ['ko', 'en']))
+        self.assertIsNotNone(
+            YoutubeSubtitle.get_subtitle_elements(self.video_id,
+                                                  ['aa', 'bb', 'en']))
 
     def test_get_subtitle_with_unknown_language_codes_exception(self):
         with self.assertRaises(NoTranscriptFound):
             YoutubeSubtitle.get_subtitle_elements(self.video_id, ['aa', 'bb'])
-
-    def test_get_subtitle_with_specific_language(self):
-        self.assertIsNotNone(
-            YoutubeSubtitle.get_subtitle_elements(self.video_id,
-                                                  ['aa', 'bb', 'en']))
