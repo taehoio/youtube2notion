@@ -29,8 +29,8 @@ class Youtube2notion:
         return YoutubeVideo.download(self.video_id, self.output_dir)
 
     def _get_subtitle_elements(self) -> list[SubtitleElement]:
-        return YoutubeSubtitle.get_subtitle_elements(
-            self.video_id, [self.subtitle_language, 'en'])
+        return YoutubeSubtitle.get_subtitle_elements(self.video_id,
+                                                     [self.subtitle_language])
 
     def _take_screenshots(self, input_filename: str):
         Path(self.images_output_dir).mkdir(parents=True, exist_ok=True)
