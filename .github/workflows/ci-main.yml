@@ -36,3 +36,5 @@ jobs:
           push: true
           tags: |
             taehoio/youtube2notion:latest
+            taehoio/youtube2notion:${{ github.sha }}
+            
