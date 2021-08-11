@@ -20,20 +20,6 @@
 
 ## How to use
 
-### Build
-
-#### Clone the repo
-
-```sh
-git clone git@github.com:taehoio/youtube2notion.git
-```
-
-#### Build the docker image
-
-```sh
-docker build -t taehoio/youtube2notion .
-```
-
 ### CLI
 
 #### Run CLI
@@ -50,10 +36,23 @@ docker run --rm -it taehoio/youtube2notion youtube2notion.py YOUTUBE_VIDEO_ID -t
 
 ### API server
 
-#### Run API server
-
+#### Run CLI
 ```sh
-docker run --rm -it --name youtube2notion -p 5000:5000 taehoio/youtube2notion app.py
+docker run -d -it --name youtube2notion -p 5000:5000 taehoio/youtube2notion app.py
+```
+
+#### Run with Docker compose
+```yaml
+version: "2.1"
+services:
+  youtube2notion:
+    image: taehoio/youtube2notion
+    container_name: youtube2notion
+    ports:
+      - 5000:5000/tcp
+    command:
+      - app.py
+    tty: true
 ```
 
 #### Call API endpoint
