@@ -71,7 +71,7 @@
 # Configuration variables
 #
 
-PY?=python3.9
+PY?=python3
 WORKDIR?=.
 VENVDIR?=$(WORKDIR)/.venv
 REQUIREMENTS_TXT?=$(wildcard requirements.txt)  # Multiple paths are supported (space separated)
