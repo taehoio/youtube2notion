@@ -9,5 +9,4 @@ class TestYoutubeInfo(unittest.TestCase):
         self.video_id = '5oNcoj4G0xc'
 
     def test_get_information_element(self):
-        self.assertIsNotNone(
-            YoutubeInfo.get_information_element(self.video_id))
+        self.assertIsNotNone(YoutubeInfo.get_information_element(self.video_id))

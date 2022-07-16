@@ -11,16 +11,17 @@ from md2notion.upload import upload
 
 class Youtube2notion:
 
-    def __init__(self,
-                 video_id: str,
-                 output_dir: str = '',
-                 notion_token_v2: str = '',
-                 notion_page_url: str = '',
-                 subtitle_language: str = 'ko',
-                 info_title: str = '',
-                 info_author_name: str = '',
-                 info_author_url: str = '',
-                 ):
+    def __init__(
+        self,
+        video_id: str,
+        output_dir: str = '',
+        notion_token_v2: str = '',
+        notion_page_url: str = '',
+        subtitle_language: str = 'ko',
+        info_title: str = '',
+        info_author_name: str = '',
+        info_author_url: str = '',
+    ):
         self.video_id = video_id
         self.output_dir = output_dir
         self.images_output_dir = self.output_dir + 'images/'

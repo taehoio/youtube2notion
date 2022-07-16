@@ -1,5 +1,6 @@
 import requests
 
+
 class InformationElement:
 
     def __init__(self, title: str, author_name: str, author_url: str):
@@ -19,13 +20,18 @@ class InformationElement:
     def author_url(self):
         return self._author_url
 
+
 class YoutubeInfo:
 
     @classmethod
     def get_information_element(cls, video_id: str) -> InformationElement:
 
-        params = {"format": "json", "url": "https://www.youtube.com/watch?v=%s" % video_id}
-        res = requests.get("https://www.youtube.com/oembed", params=params).json()
+        params = {
+            "format": "json",
+            "url": "https://www.youtube.com/watch?v=%s" % video_id
+        }
+        res = requests.get(
+            "https://www.youtube.com/oembed", params=params).json()
 
         information_element = InformationElement(
             title=res.get('title'),
