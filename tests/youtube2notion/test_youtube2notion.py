@@ -15,12 +15,18 @@ class TestYoutube2notion(unittest.TestCase):
         output_dir = './tmp/%s/' % video_id
         notion_token_v2 = ''
         notion_page_url = ''
+        info_title = ''
+        info_author_name = ''
+        info_author_url = ''
 
         self.y2n = Youtube2notion(
             video_id=video_id,
             output_dir=output_dir,
             notion_token_v2=notion_token_v2,
-            notion_page_url=notion_page_url)
+            notion_page_url=notion_page_url,
+            info_title=info_title,
+            info_author_name=info_author_name,
+            info_author_url=info_author_url)
 
     def test_execute(self):
         self.y2n.execute()
