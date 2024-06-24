@@ -50,5 +50,5 @@ uritemplate==3.0.1
 urllib3==1.26.5
 Werkzeug==2.0.1
 yapf==0.31.0
-youtube-dl==2021.6.6
+yt-dlp==2023.3.4
 youtube-transcript-api==0.4.1

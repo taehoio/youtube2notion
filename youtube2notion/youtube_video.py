@@ -1,4 +1,4 @@
-import youtube_dl
+from yt_dlp import YoutubeDL
 
 
 class YoutubeVideo:
@@ -25,7 +25,7 @@ class YoutubeVideo:
             'outtmpl': output_filename,
         }
 
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        with YoutubeDL(ydl_opts) as ydl:
             ydl.download([YoutubeVideo.to_url(video_id)])
 
         return output_filename
